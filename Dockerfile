@@ -4,4 +4,3 @@ COPY yarn.lock /src/
 WORKDIR /src/
 RUN yarn
 COPY ./ /src/
-RUN yarn build
