@@ -30,5 +30,7 @@ module.exports = {
         'no-plusplus': 0,
         'arrow-body-style': 0,
         'react/destructuring-assignment': 0,
+        'react/prop-types': 0,
+        'react/jsx-one-expression-per-line': 0,
     }
 }

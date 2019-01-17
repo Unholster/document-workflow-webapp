@@ -1,4 +1,5 @@
 import React from 'react';
+import WorkflowUtils from './WorkflowUtils';
 import api from '../../api/api';
 
 class Workflow extends React.Component {
@@ -10,17 +11,20 @@ class Workflow extends React.Component {
   }
 
   componentDidMount() {
-    api.getDocumentStates(14)
+    api.getDocumentStates(this.props.doc_id)
       .then((response) => {
-        this.setState({ states: response });
+        const states_list = WorkflowUtils.getStatelist(response);
+        this.setState({ states: states_list });
       });
   }
 
   render() {
-    const lel = JSON.stringify(this.state.states);
     return (
       <div>
-        { lel }
+        Estados del documento con id {this.props.doc_id}:
+        <br />
+        <br />
+        { this.state.states }
       </div>
     );
   }
