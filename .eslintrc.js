@@ -27,6 +27,8 @@ module.exports = {
         'no-debugger': 0,
         'camelcase': 0,
         'no-underscore-dangle': ['error', { allowAfterThis: true }],
-        'no-plusplus': 0
+        'no-plusplus': 0,
+        'arrow-body-style': 0,
+        'react/destructuring-assignment': 0,
     }
 }
