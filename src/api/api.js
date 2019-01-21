@@ -25,7 +25,6 @@ function getDocumentStates(document_id) {
     .catch((err) => {
       console.log(err);
     });
-  // TODO: Crear método que obtiene los estados de un Documento
 }
 
 function getDocumentTransitions(document_id) {
@@ -40,7 +39,6 @@ function getDocumentTransitions(document_id) {
     .catch((err) => {
       console.log(err);
     });
-  // TODO: Crear método que obtiene las transiciones de un Documento
 }
 
 function getDocumetSections(document_id) {
@@ -57,9 +55,39 @@ function getDocumetSections(document_id) {
     });
 }
 
+function getPreviousDocumentStates(s_id) {
+  return axios.get(`${API_HOST}/get_previous_states`, {
+    params: {
+      state_id: s_id,
+    },
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function getNextDocumentStates(s_id) {
+  return axios.get(`${API_HOST}/get_next_states`, {
+    params: {
+      state_id: s_id,
+    },
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 export default {
   getDocumentStates,
   getDocumentsTypes,
   getDocumetSections,
   getDocumentTransitions,
+  getPreviousDocumentStates,
+  getNextDocumentStates,
 };
