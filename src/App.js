@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Workflow from './components/Workflow/Workflow';
-import Document1 from './components/Documents/Document1Edit.jsx'
+import Document1 from './components/Documents/Document1Edit';
 
 class App extends Component {
   constructor(props) {
