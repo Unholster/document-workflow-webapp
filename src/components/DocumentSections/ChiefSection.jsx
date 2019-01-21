@@ -6,7 +6,7 @@ export default (props) => {
   return (
     <div>
       <Jumbotron style={jumboStyles}>
-        <h3 class="text-left">
+        <h3 className="text-left">
         Encargado de Trabajo
         </h3>
         <br/>

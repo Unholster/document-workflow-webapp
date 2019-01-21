@@ -26,8 +26,8 @@ class WorkSection extends React.Component {
     return (
       <div>
         <Jumbotron style={jumboStyles}>
-          <h3 class="text-left">
-          {this.props.description}Detalle de Trabajo{this.state.desc_text}
+          <h3 className="text-left">
+          Detalle de Trabajo
           </h3>
           <br/>
           <FormGroup row>
