@@ -1,0 +1,22 @@
+.Workflow {
+  width: auto;
+  height: auto;
+  padding: 15px 30px;
+  margin: 0px 15px 15px;
+  border: 1px solid rgb(228, 229, 229);
+  border-radius: 5px;
+  clear: both;
+  background: white;
+}
+
+.Workflow-States-Container {
+  display: flex;
+  align-items: center;
+}
+
+.Workflow-States-Container > div {
+  font-size: 20;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid rgb(228, 229, 229);
+}
