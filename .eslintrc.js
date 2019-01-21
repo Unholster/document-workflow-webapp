@@ -14,7 +14,8 @@ module.exports = {
     },
     'env': {
         'browser': true,
-        'node': true
+        'node': true,
+        'jest': true,
     },
     'rules': {
         'max-len': [2, 120, 4, { ignoreComments: true, ignorePattern: ignoreLongStrings }],
