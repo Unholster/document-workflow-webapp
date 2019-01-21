@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Workflow from './components/Workflow/Workflow';
+import Document1 from './components/Documents/Document1Edit.jsx'
 
 class App extends Component {
   constructor(props) {
@@ -27,6 +28,8 @@ class App extends Component {
     const workflow = this.state.submitted ? <Workflow doc_id={this.state.value} /> : '';
     return (
       <div className="App">
+        <Document1 />
+        <Workflow />
         <form onSubmit={this.handleSubmit}>
           Document id:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
