@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_HOST = 'http://127.0.0.1:8000/dp';
+const API_TESTS = 'http://127.0.0.1:8000/test';
 
 
 function getDocumentsTypes() {
@@ -83,6 +84,17 @@ function getNextDocumentStates(s_id) {
     });
 }
 
+function getDocument1(document_id) {
+  return axios.get(`${API_TESTS}/get_document1/${document_id}/?format=json`, {
+  })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 export default {
   getDocumentStates,
   getDocumentsTypes,
@@ -90,4 +102,5 @@ export default {
   getDocumentTransitions,
   getPreviousDocumentStates,
   getNextDocumentStates,
+  getDocument1,
 };
