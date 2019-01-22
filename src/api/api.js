@@ -11,7 +11,7 @@ function getDocumentsTypes() {
       return response;
     })
     .catch((err) => {
-      console.log(err);
+      alert(err);
     });
 }
 
@@ -22,7 +22,7 @@ function getDocumentStates(document_id) {
       return response.data;
     })
     .catch((err) => {
-      console.log(err);
+      alert(err);
     });
 }
 
@@ -33,7 +33,7 @@ function getDocumentTransitions(document_id) {
       return response.data;
     })
     .catch((err) => {
-      console.log(err);
+      alert(err);
     });
 }
 
@@ -44,7 +44,7 @@ function getDocumetSections(document_id) {
       return response.data;
     })
     .catch((err) => {
-      console.log(err);
+      alert(err);
     });
 }
 
@@ -58,7 +58,7 @@ function getPreviousDocumentStates(s_id) {
       return response.data;
     })
     .catch((err) => {
-      console.log(err);
+      alert(err);
     });
 }
 
@@ -72,7 +72,7 @@ function getNextDocumentStates(s_id) {
       return response.data;
     })
     .catch((err) => {
-      console.log(err);
+      alert(err);
     });
 }
 
@@ -83,7 +83,7 @@ function getDocument1(document_id) {
       return response.data;
     })
     .catch((err) => {
-      console.log(err);
+      alert(err);
     });
 }
 
@@ -103,7 +103,7 @@ function postDocument1Url(document_id, form) {
     getFormData(form)).then((response) => {
     return response.data;
   }).catch((err) => {
-    console.log(err);
+    alert(err);
   });
 }
 
