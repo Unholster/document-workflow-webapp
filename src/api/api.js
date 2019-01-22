@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $ from 'jquery';
 
 const API_HOST = 'http://127.0.0.1:8000/dp';
 const API_TESTS = 'http://127.0.0.1:8000/test';
@@ -15,10 +16,7 @@ function getDocumentsTypes() {
 }
 
 function getDocumentStates(document_id) {
-  return axios.get(`${API_HOST}/get_document_states`, {
-    params: {
-      doc_id: document_id,
-    },
+  return axios.get(`${API_HOST}/get_document_states?doc_id=${document_id}`, {
   })
     .then((response) => {
       return response.data;
@@ -29,10 +27,7 @@ function getDocumentStates(document_id) {
 }
 
 function getDocumentTransitions(document_id) {
-  return axios.get(`${API_HOST}/get_document_transitions`, {
-    params: {
-      doc_id: document_id,
-    },
+  return axios.get(`${API_HOST}/get_document_transitions?doc_id=${document_id}`, {
   })
     .then((response) => {
       return response.data;
@@ -43,10 +38,7 @@ function getDocumentTransitions(document_id) {
 }
 
 function getDocumetSections(document_id) {
-  return axios.get(`${API_HOST}/get_document_sections`, {
-    params: {
-      doc_id: document_id,
-    },
+  return axios.get(`${API_HOST}/get_document_sections?doc_id=${document_id}`, {
   })
     .then((response) => {
       return response.data;
@@ -95,6 +87,26 @@ function getDocument1(document_id) {
     });
 }
 
+function getFormData($form) {
+  const unindexed_array = $form.serializeArray();
+  const indexed_array = {};
+
+  $.map(unindexed_array, (n) => {
+    indexed_array[n.name] = n.value;
+  });
+
+  return indexed_array;
+}
+
+function postDocument1Url(document_id, form) {
+  return axios.post(`${API_TESTS}/save_document1/${document_id}/`,
+    getFormData(form)).then((response) => {
+    return response.data;
+  }).catch((err) => {
+    console.log(err);
+  });
+}
+
 export default {
   getDocumentStates,
   getDocumentsTypes,
@@ -103,4 +115,5 @@ export default {
   getPreviousDocumentStates,
   getNextDocumentStates,
   getDocument1,
+  postDocument1Url,
 };
