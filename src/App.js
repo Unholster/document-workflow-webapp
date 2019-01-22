@@ -29,7 +29,6 @@ class App extends Component {
     return (
       <div className="App">
         <Document1 />
-        <Workflow />
         <form onSubmit={this.handleSubmit}>
           Document id:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
