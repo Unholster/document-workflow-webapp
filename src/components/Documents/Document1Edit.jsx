@@ -2,6 +2,7 @@ import React from 'react';
 import api from '../../api/api';
 import ChiefSection from '../DocumentSections/ChiefSection.jsx'
 import WorkSection from '../DocumentSections/WorkSection.jsx'
+import $ from 'jquery';
 
 class Document1 extends React.Component {
   constructor(props) {
@@ -14,7 +15,11 @@ class Document1 extends React.Component {
       start_date: "",
       end_date: "",
       description: "",
+      doc_state: "",
      };
+
+     this.formRef = React.createRef();
+     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +32,7 @@ class Document1 extends React.Component {
           start_date: response.start_date,
           end_date: response.end_date,
           description: response.description,
+          doc_state: response.state,
          });
       });
   }
@@ -40,17 +46,25 @@ class Document1 extends React.Component {
           Documento de Tipo 1
           </h2>
           <br/>
-          <form>
+          <form onSubmit={this._handleSubmit} ref={this.formRef} id="docForm">
           <ChiefSection first_name={this.state.first_name}
                         last_name={this.state.last_name}
                         fee={this.state.fee}/>
           <WorkSection start_date={this.state.start_date}
                        end_date={this.state.end_date}
                        description={this.state.description}/>
+          <input type="hidden" name="state" value={this.state.doc_state}/>
+          <input type="submit" value="Submit" />
           </form>
         </div>
       </div>
     )
+  }
+
+  _handleSubmit(e){
+    e.preventDefault();
+    api.postDocument1Url(1, $("#docForm"));
+    window.location.reload();
   }
 }
 
