@@ -9,6 +9,7 @@ class Document1 extends React.Component {
     super(props);
     this.state = {
       ct_id: 14,
+<<<<<<< HEAD
       first_name: '',
       last_name: '',
       fee: '',
@@ -16,6 +17,15 @@ class Document1 extends React.Component {
       end_date: '',
       description: '',
       doc_state: '',
+=======
+      first_name: "",
+      last_name: "",
+      fee: "",
+      start_date: "",
+      end_date: "",
+      description: "",
+      doc_state: "",
+>>>>>>> Allows to edit a document and save it's new state
      };
 
      this.formRef = React.createRef();
@@ -59,6 +69,12 @@ class Document1 extends React.Component {
         </div>
       </div>
     );
+  }
+
+  _handleSubmit(e){
+    e.preventDefault();
+    api.postDocument1Url(1, $("#docForm"));
+    window.location.reload();
   }
 
   _handleSubmit(e){
