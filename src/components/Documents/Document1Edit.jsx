@@ -2,6 +2,8 @@ import React from 'react';
 import api from '../../api/api';
 import ChiefSection from '../DocumentSections/ChiefSection.jsx'
 import WorkSection from '../DocumentSections/WorkSection.jsx'
+import Workflow from '../Workflow/Workflow';
+
 import $ from 'jquery';
 
 class Document1 extends React.Component {
@@ -20,6 +22,7 @@ class Document1 extends React.Component {
 
      this.formRef = React.createRef();
      this._handleSubmit = this._handleSubmit.bind(this);
+     this.setNextState = this.setNextState.bind(this)
   }
 
   componentDidMount() {
@@ -53,12 +56,19 @@ class Document1 extends React.Component {
           <WorkSection start_date={this.state.start_date}
                        end_date={this.state.end_date}
                        description={this.state.description}/>
+          <Workflow doc_id={14} set_state_cb={this.setNextState}/>
           <input type="hidden" name="state" value={this.state.doc_state}/>
           <input type="submit" value="Submit" />
           </form>
         </div>
       </div>
     )
+  }
+
+  setNextState(next_state) {
+    this.setState({
+      doc_state: next_state,
+    });
   }
 
   _handleSubmit(e){

@@ -1,6 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
-
 
 const getStatelist = (documentStates) => {
   return documentStates.map(state => <div>{state.fields.state_name.toString()}</div>);
@@ -23,7 +21,7 @@ const getPossibleTransitions = (workflow) => {
   const transitionsJSON = JSON.parse(workflow.state.transitions);
   const id = docJSON.state;
   const possibleTransitions = transitionsJSON.filter(e => e.fields.start_state === id);
-  return possibleTransitions.map(transition => [transition.pk, transition.fields.name]);
+  return possibleTransitions.map(transition => [transition.fields.end_state, transition.fields.name]);
 };
 
 export default {

@@ -52,6 +52,7 @@ class Workflow extends React.Component {
 
   onRadioBtnClick(rSelected) {
     this.setState({ rSelected });
+    this.props.set_state_cb(rSelected)
   }
 
   render() {
