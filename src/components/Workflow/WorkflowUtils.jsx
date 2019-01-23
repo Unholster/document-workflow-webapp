@@ -23,7 +23,7 @@ const getPossibleTransitions = (workflow) => {
   const transitionsJSON = JSON.parse(workflow.state.transitions);
   const id = docJSON.state;
   const possibleTransitions = transitionsJSON.filter(e => e.fields.start_state === id);
-  return possibleTransitions.map(transition => <Button color="primary">{transition.fields.name.toString()}</Button>);
+  return possibleTransitions.map(transition => [transition.pk, transition.fields.name]);
 };
 
 export default {

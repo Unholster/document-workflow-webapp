@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Badge, ButtonGroup } from 'reactstrap';
+import { Jumbotron, Badge, ButtonGroup, Button } from 'reactstrap';
 import WorkflowUtils from './WorkflowUtils';
 import api from '../../api/api';
 import './Workflow.css';
@@ -16,7 +16,9 @@ class Workflow extends React.Component {
       document: [],
       currentState: '',
       possibleTransitions: '',
+      rSelected: '',
     };
+    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
   }
 
   componentDidMount() {
@@ -40,9 +42,16 @@ class Workflow extends React.Component {
     if (this.state.states.length > 0 && this.state.transitions.length > 0 && this.state.document.length > 0) {
       if (this.state.currentState === '') {
         this.setState({ currentState: WorkflowUtils.getCurrentState(this) });
-        this.setState({ possibleTransitions: WorkflowUtils.getPossibleTransitions(this) });
+        this.setState({
+          possibleTransitions: WorkflowUtils.getPossibleTransitions(this)
+            .map(transition => <Button color="primary" onClick={() => this.onRadioBtnClick(transition[0])} active={this.state.rSelected === transition[0]}>{transition[1].toString()}</Button>)
+        });
       }
     }
+  }
+
+  onRadioBtnClick(rSelected) {
+    this.setState({ rSelected });
   }
 
   render() {
