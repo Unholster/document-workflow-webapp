@@ -18,11 +18,13 @@ class Document1 extends React.Component {
       end_date: '',
       description: '',
       doc_state: '',
-     };
+      nextTransitionId: '',
+    };
 
-     this.formRef = React.createRef();
-     this._handleSubmit = this._handleSubmit.bind(this);
-     this.setNextState = this.setNextState.bind(this)
+    this.formRef = React.createRef();
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this.setNextState = this.setNextState.bind(this);
+    this.setTransition = this.setTransition.bind(this);
   }
 
   componentDidMount() {
@@ -56,8 +58,9 @@ class Document1 extends React.Component {
           <WorkSection start_date={this.state.start_date}
                        end_date={this.state.end_date}
                        description={this.state.description}/>
-          <Workflow doc_id={14} set_state_cb={this.setNextState}/>
+          <Workflow doc_id={14} set_state_cb={this.setNextState} set_transition_cb={this.setTransition}/>
           <input type="hidden" name="state" value={this.state.doc_state}/>
+          <input type="hidden" name="transition" value={this.state.nextTransitionId}/>
           <input type="submit" value="Submit" />
           </form>
         </div>
@@ -71,29 +74,19 @@ class Document1 extends React.Component {
     window.location.reload();
   }
 
+  setTransition(transition_id) {
+    this.setState({
+      nextTransitionId: transition_id,
+    });
+  }
+
   setNextState(next_state) {
     this.setState({
       doc_state: next_state,
     });
   }
 
-  _handleSubmit(e){
-    e.preventDefault();
-    api.postDocument1Url(1, $("#docForm"));
-    window.location.reload();
-  }
 
-  setNextState(next_state) {
-    this.setState({
-      doc_state: next_state,
-    });
-  }
-
-  _handleSubmit(e){
-    e.preventDefault();
-    api.postDocument1Url(1, $("#docForm"));
-    window.location.reload();
-  }
 }
 
 export default Document1;

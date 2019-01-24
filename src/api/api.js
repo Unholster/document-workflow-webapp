@@ -100,7 +100,12 @@ function getFormData($form) {
 
 function postDocument1Url(document_id, form) {
   return axios.post(`${API_TESTS}/save_document1/${document_id}/`,
-    getFormData(form)).then((response) => {
+    getFormData(form), {
+      auth: {
+        username: 'luis.bustos',
+        password: '1234',
+      },
+    }).then((response) => {
     return response.data;
   }).catch((err) => {
     alert(err);

@@ -21,6 +21,7 @@ class Workflow extends React.Component {
       comment: '',
     };
     this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+    this.onChangeFunction = this.onChangeFunction.bind(this);
   }
 
   componentDidMount() {
@@ -46,16 +47,18 @@ class Workflow extends React.Component {
         this.setState({ currentState: WorkflowUtils.getCurrentState(this) });
         this.setState({
           possibleTransitions: WorkflowUtils.getPossibleTransitions(this)
-            .map(transition => <Button color="primary" onClick={() => this.onRadioBtnClick(transition[0])} active={this.state.rSelected === transition[0]}>{transition[1].toString()}</Button>)
+            .map(transition => <Button color="primary" onClick={() => this.onRadioBtnClick(transition[0])} active={this.state.rSelected === transition[0]}>{transition[1].toString()}</Button>),
+          comment: '',
         });
       }
     }
   }
 
   onRadioBtnClick(rSelected) {
-    this.setState({ rSelected });
-    this.props.set_state_cb(rSelected)
-    this.addCommentTextArea(rSelected);
+    this.setState({ rSelected: rSelected[0] });
+    this.props.set_state_cb(rSelected[0]);
+    this.props.set_transition_cb(rSelected[1]);
+    this.addCommentTextArea(rSelected[1]);
   }
 
   onChangeFunction(component, value) {
