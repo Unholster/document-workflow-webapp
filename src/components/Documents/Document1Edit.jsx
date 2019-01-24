@@ -8,13 +8,13 @@ class Document1 extends React.Component {
     super(props);
     this.state = {
       ct_id: 14,
-      first_name: "",
-      last_name: "",
-      fee: "",
-      start_date: "",
-      end_date: "",
-      description: "",
-     };
+      first_name: '',
+      last_name: '',
+      fee: '',
+      start_date: '',
+      end_date: '',
+      description: '',
+    };
   }
 
   componentDidMount() {
@@ -27,7 +27,7 @@ class Document1 extends React.Component {
           start_date: response.start_date,
           end_date: response.end_date,
           description: response.description,
-         });
+        });
       });
   }
 
@@ -35,22 +35,26 @@ class Document1 extends React.Component {
     return (
       <div>
         <div>
-          <br/>
+          <br />
           <h2>
           Documento de Tipo 1
           </h2>
-          <br/>
+          <br />
           <form>
-          <ChiefSection first_name={this.state.first_name}
-                        last_name={this.state.last_name}
-                        fee={this.state.fee}/>
-          <WorkSection start_date={this.state.start_date}
-                       end_date={this.state.end_date}
-                       description={this.state.description}/>
+            <ChiefSection
+              first_name={this.state.first_name}
+              last_name={this.state.last_name}
+              fee={this.state.fee}
+            />
+            <WorkSection
+              start_date={this.state.start_date}
+              end_date={this.state.end_date}
+              description={this.state.description}
+            />
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 

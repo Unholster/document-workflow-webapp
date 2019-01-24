@@ -1,6 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
-
 
 const getStatelist = (documentStates) => {
   return documentStates.map(state => <div>{state.fields.state_name.toString()}</div>);
