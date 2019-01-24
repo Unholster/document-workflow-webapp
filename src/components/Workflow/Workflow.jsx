@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Badge, ButtonGroup, Button } from 'reactstrap';
+import { Jumbotron, Badge, ButtonGroup, Button, FormGroup, Col, Label, Input } from 'reactstrap';
 import WorkflowUtils from './WorkflowUtils';
 import api from '../../api/api';
 import './Workflow.css';
@@ -17,6 +17,8 @@ class Workflow extends React.Component {
       currentState: '',
       possibleTransitions: '',
       rSelected: '',
+      acceptComments: false,
+      comment: '',
     };
     this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
   }
@@ -38,7 +40,7 @@ class Workflow extends React.Component {
       });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevState) {
     if (this.state.states.length > 0 && this.state.transitions.length > 0 && this.state.document.length > 0) {
       if (this.state.currentState === '') {
         this.setState({ currentState: WorkflowUtils.getCurrentState(this) });
@@ -52,9 +54,40 @@ class Workflow extends React.Component {
 
   onRadioBtnClick(rSelected) {
     this.setState({ rSelected });
+    this.addCommentTextArea(rSelected);
   }
 
+  onChangeFunction(component, value) {
+    this.setState({ comment: value });
+  }
+
+  addCommentTextArea(rSelected) {
+    const transition = JSON.parse(this.state.transitions).find(e => e.pk === rSelected);
+    this.setState({ acceptComments: transition.fields.accepts_observation });
+  }
+
+
   render() {
+    let textarea;
+    if (this.state.acceptComments) {
+      textarea = (
+        <FormGroup row>
+          <Label for="description" sm={2}>Comentario</Label>
+          <Col sm={10}>
+            <Input
+              type="textarea"
+              name="comment"
+              id="comment"
+              placeholder="Añadir un comentario..."
+              value={this.state.comment}
+              onChange={this.onChangeFunction}
+            />
+          </Col>
+        </FormGroup>
+      );
+    } else {
+      textarea = null;
+    }
     return (
       <Jumbotron>
         <div>
@@ -70,6 +103,9 @@ class Workflow extends React.Component {
           <ButtonGroup>
             {this.state.possibleTransitions}
           </ButtonGroup>
+          <br />
+          <br />
+          {textarea}
         </div>
       </Jumbotron>
     );
